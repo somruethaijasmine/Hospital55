@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container-fluid my-3 justify-content-center align-items-center shadow rounded">
+<h1 class="mt-2">แก้ไขข้อมูลยา</h1>
+<form action="" method="POST">
+{% csrf_token %}
+<div class="mb-3">
+ชื่อยา  <input type="text" name="drug_name" value="{{drug_data.drug_name}}" class="form-control" required>
+</div>
+<div class="mb-3">
+ประเภท <select name="drug_type" class="form-select">
+{% for i in drug_type %}
+<option value="{{i.type_id}}"
+{% if i.type_id == drug_data.drug_type_id %}
+selected
+{% endif %}
+>{{i.type_name}}</option>
+{% endfor %}
+</select>
+</div>
+<div class="mb-3">
+จำนวน  <input type="number" name="drug_qty" value="{{drug_data.drug_qty}}" class="form-control" required>
+</div>
+<div class="mb-3">
+วันหมดอายุ  <input type="date" name="drug_expired" value="{{drug_data.drug_exp|date:'Y-m-d'}}" class="form-control" required>
+</div>
+<button type="submit" class="btn btn-dark w-100 mt-3 mb-3" >บันทึก</button>
+</form>
+</div>
+{% endblock %}

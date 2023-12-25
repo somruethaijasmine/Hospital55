@@ -1,0 +1,37 @@
+{% extends "base.html" %} {% block content %}
+<div
+  class="container my-3 d-flex justify-content-center align-items-center shadow rounded"
+>
+  <div class="row">
+    <div class="col">
+      <form action="" method="POST">
+        {%csrf_token%}
+        <p></p>
+        <h2 class="text-center">เข้าสู่ระบบที่นี่</h2>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label"
+            >Username</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="username"
+            name="username"
+            placeholder="Username"
+            aria-describedby="emailHelp"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input type="password" class="form-control" id="pwd" name="pswd" placeholder="Password" required/>
+        </div>
+        <p class="text-secondary">ยังไม่มีบัญชี ? <a class="text-primary" href="/addmember">สมัครสมาชิก</a></p>
+        <button type="submit" class="btn btn-dark w-100">เข้าสู่ระบบ</button>
+        <p><br /></p>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

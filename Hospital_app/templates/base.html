@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}{% endblock %}</title>
+    {% load bootstrap5 %} {% bootstrap_css %} {% bootstrap_javascript %}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Noto Sans Thai", sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+      <div class="container-fluid">
+        <!-- Logo/Brand on the Left -->
+        <a class="navbar-brand" href="/"><i class="fa fa-heartbeat" aria-hidden="true"></i>
+        ระบบจัดการห้องพยาบาล
+        </a>
+
+        <!-- Toggler Button for Small Screens -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navigation Links on the Right -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="fa fa-home" aria-hidden="true"></i>
+                Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/buy_drug">
+                <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+                เบิกยา</a>
+            </li>
+            {% if user.is_authenticated and user.is_staff %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'medication_history' %}">
+                <i class="fa fa-tachometer" aria-hidden="true"></i>
+                รายงาน</a>
+            </li>
+            <!-- Dropdown Menu -->
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+              <i class="fa fa-gear" aria-hidden="true"></i>
+                จัดการข้อมูลยา
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="/add_drug">
+                  <i class="fa fa-plus" aria-hidden="true"></i>
+                  เพิ่มยา</a></li>
+                <li>
+                  <a class="dropdown-item" href="/manage_drug">
+                    <i class="fa fa-wrench" aria-hidden="true"></i>
+                    แก้ไขข้อมูลยา</a>
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item" href="#"></a></li>
+              </ul>
+            </li>
+            <!-- End Dropdown Menu -->
+            <!-- Dropdown Menu -->
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+              <i class="fa fa-gear" aria-hidden="true"></i>
+                จัดการประเภทยา
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="/add_type">
+                  <i class="fa fa-plus" aria-hidden="true"></i>
+                  เพิ่มประเภทยา</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item" href="/manage_type">
+                  <i class="fa fa-wrench" aria-hidden="true"></i>
+                  แก้ไขประเภทยา</a></li>
+              </ul>
+            </li>
+            {% endif %}
+            {% comment %} {% if user.is_authenticated and not user.is_staff %} {% endcomment %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'view_own_medication_history' %}">
+                <i class="fa fa-tachometer" aria-hidden="true"></i>
+                ประวัติ</a>
+            </li>
+            {% comment %} {% endif %} {% endcomment %}
+            <li class="nav-item">
+              <a class="nav-link" href="/edit_profile">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                ข้อมูลส่วนตัว</a>
+            </li>
+            <!-- End Dropdown Menu -->
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="logout">ออกจากระบบ</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="/login">เข้าสู่ระบบ</a>
+            </li>
+            {% endif %}
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      {% include 'msg.html' %}
+
+      {% comment %} {% include "msg.html" %} {% endcomment %} 
+      {% block content%} 
+      
+      {% endblock %}
+    </div>
+  </body>
+</html>

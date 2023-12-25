@@ -1,0 +1,83 @@
+{% extends "base.html" %} {% block content %}
+<div
+  class="container my-3 d-flex justify-content-center align-items-center shadow rounded"
+>
+  <div class="row">
+    <div class="col">
+      <form action="{% url 'addmember' %}" method="POST">
+        {%csrf_token%}
+        <p></p>
+        <h2 class="text-center">สมัครสมาชิกที่นี่</h2>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Username</label>
+          <input
+            type="text"
+            class="form-control"
+            id="username"
+            name="username"
+            placeholder="Username"
+            aria-describedby="emailHelp"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="pwd"
+            name="pswd"
+            placeholder="Password"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            name="email"
+            placeholder="Email"
+            aria-describedby="emailHelp"
+            required
+          />
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Firstname</label>
+            <input
+              type="text"
+              class="form-control"
+              id="firstname"
+              name="firstname"
+              placeholder="Firstname"
+              aria-describedby="emailHelp"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label"
+              >Lastname</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="lastname"
+              name="lastname"
+              placeholder="Lastname"
+              aria-describedby="emailHelp"
+              required
+            />
+          </div>
+        </div>
+        <p class="text-secondary">
+          มีบัญชีอยู่แล้ว ?
+          <a class="text-primary" href="/login">เข้าสู่ระบบ</a>
+        </p>
+        <button type="submit" class="btn btn-dark w-100">สมัครสมาชิก</button>
+        <p><br /></p>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="mt-2 p-1 bg-success text-white rounded">
+  <div class="progress">
+    <div class="progress-bar bg-success progress-bar-striped" style="width:100%"></div>
+  </div>
+    <h5>จัดการข้อมูลประเภทยา</h5>
+    <div class="progress">
+      <div class="progress-bar bg-success progress-bar-striped" style="width:100%"></div>
+    </div>
+  </div>
+<div class="container-fluid my-3 justify-content-center align-items-center shadow rounded">
+<table class="table table-responsive">
+    <thead>
+        <tr>
+            <th><div class="cold-block d-sm-none">
+              No.
+            </div><div class="col d-none d-sm-block">
+              ลำดับ
+            </div></th>
+            <th>ชื่อประเภทยา</th>
+            <th>เครื่องมือ</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in type %}
+        <tr>
+            <td>{{i.type_id}}</td>
+            <td>{{i.type_name}}</td>
+            <td> {% comment %} ปุ่มแก้ไข และ ลบ จะกลายเป็นไอคอนไม่จอลดขนาดลง {% endcomment %}
+              <div class="cold-block d-sm-none">
+                <a href="editt/{{i.type_id}}" class="btn btn-warning"><i class="fa fa-gear" aria-hidden="true"></i><a/>
+                  <a href="#" class="btn btn-danger" data-bs-toggle="modal" 
+                  data-bs-target="#deleteConfirmationModal" 
+                  onclick="setDeleteUrl('deletet/{{i.type_id}}')">
+                  <i class="fa fa-trash-o" aria-hidden="true"></i>
+                    </a>
+              </div><div class="col d-none d-sm-block">
+                <a href="editt/{{i.type_id}}" class="btn btn-outline-warning">แก้ไข<a/>
+                  <a href="#" class="btn btn-outline-danger" data-bs-toggle="modal" 
+                  data-bs-target="#deleteConfirmationModal" 
+                  onclick="setDeleteUrl('deletet/{{i.type_id}}')">
+                  ลบ
+                    </a>
+              </div>
+              </td>{% comment %} ปุ่มแก้ไข และ ลบ จะกลายเป็นไอคอนไม่จอลดขนาดลง {% endcomment %}
+        </tr>
+        {% endfor %}
+    </tbody>
+{% comment %} โมดอล Modal แจ้งเตือน ก่อนทำการลบข้อมูล {% endcomment %}
+<div class="modal fade" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteConfirmationModalLabel">ยืนยันการลบ</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>คุณต้องการลบข้อมูล?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+          <a id="deleteButton" href="#" class="btn btn-danger">ลบ</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script> 
+    function setDeleteUrl(url) {
+      document.getElementById('deleteButton').href = url;
+    }
+  </script>
+{% comment %} โมดอล Modal แจ้งเตือน ก่อนทำการลบข้อมูล {% endcomment %}
+</div>
+{% endblock  %}

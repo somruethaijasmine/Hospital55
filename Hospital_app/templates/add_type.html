@@ -1,0 +1,29 @@
+{% extends "base.html" %} {% block content %}
+<div
+  class="container-fluid my-3 justify-content-center align-items-center shadow rounded"
+>
+  <form action="" method="POST">
+    {% csrf_token %}
+    <img
+    src="https://scontent.fbkk29-9.fna.fbcdn.net/v/t1.15752-9/370108956_1186705186049575_251338245173117657_n.jpg?stp=dst-jpg_p851x315&_nc_cat=104&ccb=1-7&_nc_sid=8cd0a2&_nc_eui2=AeFczizgXWSetn6XApINyFw_59PtxAlQ9u3n0-3ECVD27UlY-0vfjZj6C8k4_4ZMMdqT7kcTvy9u6Hghj0fNhPT8&_nc_ohc=WhalhpXXOz8AX8LJIf5&_nc_ht=scontent.fbkk29-9.fna&oh=03_AdS5FojvbfdujL1qm8PMox7nDKjpuUaFYDIAzTv-lolFwg&oe=65A15B8D"
+    class="card-img-top"
+    alt="..."
+    />
+    <div class="progress">
+      <div class="progress-bar bg-success progress-bar-striped" style="width:100%"></div>
+    </div>
+   <p></p>
+    <h1>เพิ่มประเภทยา
+      <link  rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"   />
+      <span class="material-symbols-outlined" >
+        medication_liquid
+        </span>  
+    </h1>
+    <div class="mb-3">
+      ชื่อประเภทยา 
+      <input type="text" name="type_name" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-success w-100 mb-3">บันทึก</button>
+  </form>
+</div>
+{% endblock %}

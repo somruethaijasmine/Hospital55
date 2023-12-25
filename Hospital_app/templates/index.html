@@ -1,0 +1,32 @@
+{% extends "base.html" %} {% block content %}
+
+<div
+  class="container my-3 d-flex justify-content-center align-items-center shadow rounded p-3"
+>
+  <div class="row">
+    {% for drug in drugs %}
+    <div class="col-3">
+      <div class="card" style="width: 18rem">
+        <img
+          src="https://plus.unsplash.com/premium_photo-1674491520280-1adb8378e86d?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          class="card-img-top"
+          alt="..."
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ drug.drug_name }}</h5>
+          <p class="card-text text-secondary">
+            ประเภท : {{drug.drug_type}}
+            <br>
+            วันหมดอายุ : {{drug.drug_exp}}
+          </p>
+          <a href="buy_drug" class="btn btn-danger w-100">เบิกยา</a>
+        </div>
+        
+      </div>
+      <br/>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}
